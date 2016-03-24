@@ -18,6 +18,3 @@ import {AppComponent} from './app.component';
 export class EditTaskComponent {
   public task = new Task("hey", 3);
 }
-
-// *ngIf = "selectedTask" [task] = "selectedTask">
- // [(ngModel)] = "task.description"
