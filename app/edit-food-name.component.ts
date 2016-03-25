@@ -9,7 +9,6 @@ import {Food} from './food';
   <div class="edit-food-name">
   <h5>Change Food Name:</h5>
     <input [(ngModel)]="food.name" class="col-sm-4 input-sm">
-    {{food.calories}}
   </div>
   `
 

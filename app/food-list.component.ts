@@ -2,19 +2,20 @@ import {Component} from 'angular2/core';
 import {Food} from './food';
 import {NewFoodComponent} from './new-food.component';
 import {EditFoodNameComponent} from './edit-food-name.component';
+import {DisplayFoodDetailsComponent} from './display-food-details.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, EditFoodNameComponent],
+  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent],
   template:
   `
-  <div class="food-list" *ngFor="#currentFood of foods">
-    <h3
-    (click)="foodClicked(currentFood)"
-    [class.selected]="currentFood === selectedFood">
-      {{currentFood.name}}
-    </h3>
-  </div>
+  <h3 class="food-list" *ngFor="#currentFood of foods"
+  (click)="foodClicked(currentFood)"
+  [class.selected]="currentFood === selectedFood">
+    {{currentFood.name}}
+  </h3>
+  <display-food-details *ngIf="selectedFood" [food]="selectedFood">
+  </display-food-details>
   <br>
   <br>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
@@ -22,6 +23,8 @@ import {EditFoodNameComponent} from './edit-food-name.component';
   <br>
   <edit-food-name *ngIf="selectedFood" [food]="selectedFood">
   </edit-food-name>
+  <br>
+  <br>
   `
 })
 
