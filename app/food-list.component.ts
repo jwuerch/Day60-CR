@@ -7,10 +7,11 @@ import {EditFoodDetailsComponent} from './edit-food-details.component';
 import {EditFoodCaloriesComponent} from './edit-food-calories.component';
 import {DisplayFoodHealthyComponent} from './display-food-healthy.component';
 import {HealthyPipe} from './healthy.pipe';
+import {DeleteFoodComponent} from './delete-food.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
+  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent, DeleteFoodComponent],
   pipes: [HealthyPipe],
   template:
   `
@@ -39,6 +40,7 @@ import {HealthyPipe} from './healthy.pipe';
   <br>
   <br>
   <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
+  <button (click)="deleteFood(selectedFood)">Delete This Food</button>
   `
 })
 
@@ -66,5 +68,13 @@ export class FoodListComponent {
   onChange(filterOption) {
     this.filterHealthy = filterOption;
   }
-
+  deleteFood(food: Food) {
+    var newArr = [];
+    for ( var i = 0; i < this.foods.length; i++) {
+      if (this.foods[i] !== food) {
+        newArr.push(this.foods[i]);
+      }
+    }
+    this.foods = newArr;
+  }
 }
