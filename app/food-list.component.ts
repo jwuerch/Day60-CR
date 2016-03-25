@@ -7,11 +7,10 @@ import {EditFoodDetailsComponent} from './edit-food-details.component';
 import {EditFoodCaloriesComponent} from './edit-food-calories.component';
 import {DisplayFoodHealthyComponent} from './display-food-healthy.component';
 import {HealthyPipe} from './healthy.pipe';
-import {DeleteFoodComponent} from './delete-food.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent, DeleteFoodComponent],
+  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
   pipes: [HealthyPipe],
   template:
   `
@@ -40,6 +39,7 @@ import {DeleteFoodComponent} from './delete-food.component';
   <br>
   <br>
   <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
+  <br>
   <button (click)="deleteFood(selectedFood)">Delete This Food</button>
   `
 })
