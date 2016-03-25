@@ -1,8 +1,10 @@
 import {Component} from 'angular2/core';
 import {Food} from './food';
+import {NewFoodComponent} from './new-food.component';
 
 @Component({
   selector: 'food-list',
+  directives: [NewFoodComponent],
   template:
   `
   <div class="food-list" *ngFor="#food of foods">
@@ -22,5 +24,10 @@ export class FoodListComponent {
       new Food("Fries", "Love it!", 300, 2),
       new Food("Smoothie", "Love it!", 300, 3)
     ];
+  }
+  createFood(foodName: string) {
+    this.foods.push(
+      new Food(foodName, "Details", 0, this.foods.length)
+    )
   }
 }

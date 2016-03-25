@@ -13,7 +13,7 @@ import {Food} from './food';
   `
 })
 
-export class AddFoodComponent {
+export class NewFoodComponent {
   public food: Food;
   public onSubmitNewFood: EventEmitter<string>;
   constructor() {
