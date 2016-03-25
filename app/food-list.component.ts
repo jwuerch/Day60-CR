@@ -12,6 +12,9 @@ import {NewFoodComponent} from './new-food.component';
     {{food.name}}
     </h3>
   </div>
+  <br>
+  <br>
+  <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   `
 })
 

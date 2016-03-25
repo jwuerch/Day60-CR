@@ -8,7 +8,7 @@ import {Food} from './food';
   `
   <div class="add-food">
   <input class="col-sm-5" #newFood>
-  <button (click)="addFood(newFood)"></button>
+  <button (click)="addFood(newFood)">Add New Food</button>
   </div>
   `
 })
