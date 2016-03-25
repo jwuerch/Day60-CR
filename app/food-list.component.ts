@@ -5,23 +5,26 @@ import {EditFoodNameComponent} from './edit-food-name.component';
 import {DisplayFoodDetailsComponent} from './display-food-details.component';
 import {EditFoodDetailsComponent} from './edit-food-details.component';
 import {EditFoodCaloriesComponent} from './edit-food-calories.component';
+import {FoodDisplayComponent} from './food-display.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
+  directives: [NewFoodComponent, FoodDisplayComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
   template:
   `
   <select>
-    <option>View all foods</option>
-    <option>View unhealthy foods over 300 calories</option>
-    <option>View Healthy foods under 300 calories</option>
+    <option value="all">View all foods</option>
+    <option value="unhealthy-over-300">View unhealthy foods over 300 calories</option>
+    <option value="healthy-under-300">View Healthy foods under 300 calories</option>
   </select>
+  <br>
 
-  <h3 class="food-list" *ngFor="#currentFood of foods"
+  <task-display class="food-list" *ngFor="#currentFood of foods"
   (click)="foodClicked(currentFood)"
+  [food]="currentFood"
   [class.selected]="currentFood === selectedFood">
-    {{currentFood.name}}
-  </h3>
+    <h3>{{currentFood.name}}</h3>
+  </task-display>
   <display-food-details *ngIf="selectedFood" [food]="selectedFood"></display-food-details>
   <br>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
@@ -56,5 +59,8 @@ export class FoodListComponent {
     this.foods.push(
       new Food(foodName, "Details", 0, this.foods.length)
     )
+  }
+  toggleHealthy(setHealthy: Boolean) {
+    this.food.healthy = setHealthy;
   }
 }
