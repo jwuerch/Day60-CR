@@ -7,9 +7,11 @@ import {NewFoodComponent} from './new-food.component';
   directives: [NewFoodComponent],
   template:
   `
-  <div class="food-list" *ngFor="#food of foods">
-    <h3>
-    {{food.name}}
+  <div class="food-list" *ngFor="#currentFood of foods">
+    <h3
+    (click)="foodClicked(currentFood)"
+    [class.selected]="currentFood === selectedFood">
+    {{currentFood.name}}
     </h3>
   </div>
   <br>
@@ -20,6 +22,7 @@ import {NewFoodComponent} from './new-food.component';
 
 export class FoodListComponent {
   public foods: Food[];
+  public selectedFood: Food;
   constructor() {
     this.foods = [
       new Food("Hamburger", "Love it!", 300, 0),
@@ -27,6 +30,10 @@ export class FoodListComponent {
       new Food("Fries", "Love it!", 300, 2),
       new Food("Smoothie", "Love it!", 300, 3)
     ];
+  }
+
+  foodClicked(clickedFood: Food): void {
+    this.selectedFood = clickedFood;
   }
   createFood(foodName: string) {
     this.foods.push(
