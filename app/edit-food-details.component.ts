@@ -7,6 +7,7 @@ import {Food} from './food';
   template:
   `
   <div class="edit-food-details">
+    <h5>Change Food Details:</h5>
     <input [(ngModel)]="food.details" class="col-sm-4 input-sm" type="text">
   </div>
 

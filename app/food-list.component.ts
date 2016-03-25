@@ -4,10 +4,11 @@ import {NewFoodComponent} from './new-food.component';
 import {EditFoodNameComponent} from './edit-food-name.component';
 import {DisplayFoodDetailsComponent} from './display-food-details.component';
 import {EditFoodDetailsComponent} from './edit-food-details.component';
+import {EditFoodCaloriesComponent} from './edit-food-calories.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent],
+  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
   template:
   `
   <h3 class="food-list" *ngFor="#currentFood of foods"
@@ -23,7 +24,7 @@ import {EditFoodDetailsComponent} from './edit-food-details.component';
   <br>
   <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
   <br>
-  <br>
+  <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
   `
 })
 
