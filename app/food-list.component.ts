@@ -5,31 +5,32 @@ import {EditFoodNameComponent} from './edit-food-name.component';
 import {DisplayFoodDetailsComponent} from './display-food-details.component';
 import {EditFoodDetailsComponent} from './edit-food-details.component';
 import {EditFoodCaloriesComponent} from './edit-food-calories.component';
-import {FoodDisplayComponent} from './food-display.component';
+import {DisplayFoodHealthyComponent} from './display-food-healthy.component';
+import {HealthyPipe} from './healthy.pipe';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, FoodDisplayComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
+  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
+  pipes: [HealthyPipe],
   template:
   `
-  <select>
+  <select (change)="onChange($event.target.value)">
     <option value="all">View all foods</option>
-    <option value="unhealthy-over-300">View unhealthy foods over 300 calories</option>
-    <option value="healthy-under-300">View Healthy foods under 300 calories</option>
+    <option value="healthy">View unhealthy foods over 300 calories</option>
+    <option value="notHealthy">View Healthy foods under 300 calories</option>
   </select>
   <br>
 
-  <task-display class="food-list" *ngFor="#currentFood of foods"
+  <div class="food-list" *ngFor="#currentFood of foods | healthy:filterHealthy"
   (click)="foodClicked(currentFood)"
-  [food]="currentFood"
   [class.selected]="currentFood === selectedFood">
     <h3>{{currentFood.name}}</h3>
-  </task-display>
-  <display-food-details *ngIf="selectedFood" [food]="selectedFood"></display-food-details>
+  </div>
   <br>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   <br>
   <br>
+  <display-food-healthy *ngIf="selectedFood" [food]="selectedFood"></display-food-healthy>
   <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
   <br>
   <br>
@@ -43,6 +44,7 @@ import {FoodDisplayComponent} from './food-display.component';
 export class FoodListComponent {
   public foods: Food[];
   public selectedFood: Food;
+  public filterHealthy: string = "notHealthy";
   constructor() {
     this.foods = [
       new Food("Hamburger", "Love it!", 300, 0),
@@ -60,7 +62,8 @@ export class FoodListComponent {
       new Food(foodName, "Details", 0, this.foods.length)
     )
   }
-  toggleHealthy(setHealthy: Boolean) {
-    this.food.healthy = setHealthy;
+  onChange(filterOption) {
+    this.filterHealthy = filterOption;
   }
+
 }
