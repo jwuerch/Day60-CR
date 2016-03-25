@@ -3,17 +3,17 @@ import {Food} from './food';
 
 @Component({
   selector: 'display-food-details',
-  inputs: ['food'],
+  inputs: ['fakeFood'],
   template:
   `
   <div class="display-food-details">
-    <p>Details: {{food.details}}</p>
-    <p>Calories: {{food.calories}}</p>
+    <p>Details: {{fakeFood.details}}</p>
+    <p>Calories: {{fakeFood.calories}}</p>
   </div>
 
   `
 })
 
 export class DisplayFoodDetailsComponent {
-  public food: Food;
+  public fakeFood: Food;
 }

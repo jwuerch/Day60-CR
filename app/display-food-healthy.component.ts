@@ -5,13 +5,13 @@ import {Component, EventEmitter} from 'angular2/core';
   selector: 'display-food-healthy',
   inputs: ['food'],
   template:
-  `display-healthy
+  `
   <div>
     <div *ngIf="food.healthy">
-      Healthy?: <input type="checkbox" checked (click)="toggleHealthy(false)">
+      <div>Healthy: <input type="checkbox" checked (click)="toggleHealthy(false)"></div>
     </div>
     <div *ngIf="!food.healthy" >
-      Healthy?: <input type="checkbox" (click)="toggleHealthy(true)">
+      <div>Healthy: <input type="checkbox" (click)="toggleHealthy(true)"></div>
     </div>
   </div>
   `

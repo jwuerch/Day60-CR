@@ -15,9 +15,9 @@ import {HealthyPipe} from './healthy.pipe';
   template:
   `
   <select (change)="onChange($event.target.value)">
-    <option value="all">View all foods</option>
-    <option value="healthy">View unhealthy foods over 300 calories</option>
-    <option value="notHealthy">View Healthy foods under 300 calories</option>
+    <option value="all" selected="selected">View all foods</option>
+    <option value="notHealthy">View unhealthy foods under 300 calories</option>
+    <option value="healthy">View healthy foods over 300 calories</option>
   </select>
   <br>
 
@@ -27,6 +27,7 @@ import {HealthyPipe} from './healthy.pipe';
     <h3>{{currentFood.name}}</h3>
   </div>
   <br>
+  <display-food-details *ngIf="selectedFood" [fakeFood]="selectedFood"></display-food-details>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   <br>
   <br>
@@ -44,7 +45,7 @@ import {HealthyPipe} from './healthy.pipe';
 export class FoodListComponent {
   public foods: Food[];
   public selectedFood: Food;
-  public filterHealthy: string = "notHealthy";
+  public filterHealthy: string = "all";
   constructor() {
     this.foods = [
       new Food("Hamburger", "Love it!", 300, 0),
