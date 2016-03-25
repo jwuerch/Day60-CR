@@ -3,10 +3,11 @@ import {Food} from './food';
 import {NewFoodComponent} from './new-food.component';
 import {EditFoodNameComponent} from './edit-food-name.component';
 import {DisplayFoodDetailsComponent} from './display-food-details.component';
+import {EditFoodDetailsComponent} from './edit-food-details.component';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent],
+  directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent],
   template:
   `
   <h3 class="food-list" *ngFor="#currentFood of foods"
@@ -14,15 +15,13 @@ import {DisplayFoodDetailsComponent} from './display-food-details.component';
   [class.selected]="currentFood === selectedFood">
     {{currentFood.name}}
   </h3>
-  <display-food-details *ngIf="selectedFood" [food]="selectedFood">
-  </display-food-details>
-  <br>
+  <display-food-details *ngIf="selectedFood" [food]="selectedFood"></display-food-details>
   <br>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   <br>
+  <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
   <br>
-  <edit-food-name *ngIf="selectedFood" [food]="selectedFood">
-  </edit-food-name>
+  <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
   <br>
   <br>
   `
