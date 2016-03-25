@@ -1,6 +1,6 @@
 export class Food {
   public healthy: Boolean = false;
-  constructor(name: string, details: string, calories: number, id: number) {
-    
+  constructor(public name: string, public details: string, public calories: number, public id: number) {
+
   }
 }
