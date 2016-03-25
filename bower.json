@@ -1,10 +1,10 @@
 {
-  "name": "bikes",
+  "name": "sd",
   "description": "",
   "main": "index.js",
   "license": "ISC",
   "moduleType": [],
-  "homepage": "",
+  "homepage": "https://github.com/jwuerch/Day59-Angular-Practice",
   "ignore": [
     "**/.*",
     "node_modules",
