@@ -17,7 +17,6 @@ import {EditFoodNameComponent} from './edit-food-name.component';
   `
 })
 
-
 export class AppComponent {
 
 }
