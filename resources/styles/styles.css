@@ -1,12 +1,3 @@
 .selected {
   color: #22bdf0;
 }
-
-h4 {
-  display:none;
-}
-
-.display-details {
-  display:block;
-  color:red;
-}

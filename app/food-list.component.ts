@@ -11,6 +11,12 @@ import {EditFoodCaloriesComponent} from './edit-food-calories.component';
   directives: [NewFoodComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
   template:
   `
+  <select>
+    <option>View all foods</option>
+    <option>View unhealthy foods over 300 calories</option>
+    <option>View Healthy foods under 300 calories</option>
+  </select>
+
   <h3 class="food-list" *ngFor="#currentFood of foods"
   (click)="foodClicked(currentFood)"
   [class.selected]="currentFood === selectedFood">
@@ -20,9 +26,12 @@ import {EditFoodCaloriesComponent} from './edit-food-calories.component';
   <br>
   <new-food (onSubmitNewFood)="createFood($event)"></new-food>
   <br>
+  <br>
   <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
   <br>
+  <br>
   <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
+  <br>
   <br>
   <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
   `

@@ -8,7 +8,7 @@ import {Food} from './food';
   `
   <div class="edit-food-calories">
     <h5>Edit Food Calories</h5>
-    <input [(ngModel)]="food.calories" class="input-sm col-sm-4">
+    <input [(ngModel)]="food.calories" type="number" class="input-sm col-sm-4">
   </div>
   `
 })
