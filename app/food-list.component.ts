@@ -65,9 +65,9 @@ export class FoodListComponent {
   foodClicked(clickedFood: Food): void {
     this.selectedFood = clickedFood;
   }
-  createFood(foodName: string) {
+  createFood(newFood: Food): void {
     this.foods.push(
-      new Food(foodName, "Details", 0, this.foods.length)
+      new Food(newFood.name, newFood.details, newFood.calories, this.foods.length)
     )
   }
   onChange(filterOption) {

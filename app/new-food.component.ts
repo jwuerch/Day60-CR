@@ -9,16 +9,16 @@ import {Food} from './food';
   <div class="add-food">
     <form>
       <h5>Enter in new food name</h5>
-      <input class="col-sm-5" #newFoodName>
-      <br>
-      <h5>Enter in new food calories</h5>
-      <input class="col-sm-5" #newFoodCalories>
+      <input class="col-sm-5" #newName>
       <br>
       <h5>Enter in new food details</h5>
-      <input class="col-sm-5" #newFoodDetails>
+      <input class="col-sm-5" #newDetails>
+      <br>
+      <h5>Enter in new food calories</h5>
+      <input class="col-sm-5" #newCalories>
       <br>
       <br>
-      <button (click)="addFood(newFood)">Add New Food</button>
+      <button (click)="addFood(newName, newDetails, newCalories)">Add New Food</button>
     </form>
   </div>
   `
@@ -26,12 +26,15 @@ import {Food} from './food';
 
 export class NewFoodComponent {
   public food: Food;
-  public onSubmitNewFood: EventEmitter<string>;
+  public onSubmitNewFood: EventEmitter<Food>;
   constructor() {
     this.onSubmitNewFood = new EventEmitter();
   }
-  addFood(foodName: HTMLInputElement) {
-    this.onSubmitNewFood.emit(foodName.value);
-    foodName.value = "";
+  addFood(newName: HTMLInputElement, newDetails: HTMLInputElement, newCalories: HTMLInputElement) {
+    var newFood = new Food(newName.value, newDetails.value, parseInt(newCalories.value), -1);
+    this.onSubmitNewFood.emit(newFood);
+    newName.value = "";
+    newCalories.value = "";
+    newDetails.value = "";
   }
 }
