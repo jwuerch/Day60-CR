@@ -1,46 +1,51 @@
 import {Component} from 'angular2/core';
 import {Food} from './food';
 import {NewFoodComponent} from './new-food.component';
-import {EditFoodNameComponent} from './edit-food-name.component';
 import {DisplayFoodDetailsComponent} from './display-food-details.component';
 import {EditFoodDetailsComponent} from './edit-food-details.component';
-import {EditFoodCaloriesComponent} from './edit-food-calories.component';
 import {DisplayFoodHealthyComponent} from './display-food-healthy.component';
 import {HealthyPipe} from './healthy.pipe';
 
 @Component({
   selector: 'food-list',
-  directives: [NewFoodComponent, DisplayFoodHealthyComponent, EditFoodNameComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent, EditFoodCaloriesComponent],
+  directives: [NewFoodComponent, DisplayFoodHealthyComponent, DisplayFoodDetailsComponent, EditFoodDetailsComponent],
   pipes: [HealthyPipe],
   template:
   `
-  <select (change)="onChange($event.target.value)">
-    <option value="all" selected="selected">View all foods</option>
-    <option value="notHealthy">View unhealthy foods under 300 calories</option>
-    <option value="healthy">View healthy foods over 300 calories</option>
-  </select>
-  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <select (change)="onChange($event.target.value)">
+        <option value="all" selected="selected">View all foods</option>
+        <option value="notHealthy">View unhealthy foods under 300 calories</option>
+        <option value="healthy">View healthy foods over 300 calories</option>
+      </select>
+      <br>
 
-  <div class="food-list" *ngFor="#currentFood of foods | healthy:filterHealthy"
-  (click)="foodClicked(currentFood)"
-  [class.selected]="currentFood === selectedFood">
-    <h3>{{currentFood.name}}</h3>
+      <div class="food-list" *ngFor="#currentFood of foods | healthy:filterHealthy"
+      (click)="foodClicked(currentFood)"
+      [class.selected]="currentFood === selectedFood">
+        <h3>{{currentFood.name}}</h3>
+      </div>
+      <br>
+      <display-food-details *ngIf="selectedFood" [fakeFood]="selectedFood"></display-food-details>
+      <br>
+      <br>
+      <display-food-healthy *ngIf="selectedFood" [food]="selectedFood"></display-food-healthy>
+      <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
+      <br>
+      <br>
+      <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
+      <br>
+      <br>
+      <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
+      <br>
+      <button (click)="deleteFood(selectedFood)">Delete This Food</button>
+    </div>
+    <div class="col-sm-6">
+      <new-food (onSubmitNewFood)="createFood($event)"></new-food>
+    </div>
   </div>
-  <br>
-  <display-food-details *ngIf="selectedFood" [fakeFood]="selectedFood"></display-food-details>
-  <new-food (onSubmitNewFood)="createFood($event)"></new-food>
-  <br>
-  <br>
-  <display-food-healthy *ngIf="selectedFood" [food]="selectedFood"></display-food-healthy>
-  <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
-  <br>
-  <br>
-  <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
-  <br>
-  <br>
-  <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
-  <br>
-  <button (click)="deleteFood(selectedFood)">Delete This Food</button>
+
   `
 })
 
