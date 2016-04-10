@@ -30,14 +30,11 @@ import {HealthyPipe} from './healthy.pipe';
       <display-food-details *ngIf="selectedFood" [fakeFood]="selectedFood"></display-food-details>
       <br>
       <br>
-      <display-food-healthy *ngIf="selectedFood" [food]="selectedFood"></display-food-healthy>
       <edit-food-name *ngIf="selectedFood" [food]="selectedFood"></edit-food-name>
       <br>
       <br>
       <edit-food-details *ngIf="selectedFood" [food]="selectedFood"></edit-food-details>
       <br>
-      <br>
-      <edit-food-calories *ngIf="selectedFood" [food]="selectedFood"></edit-food-calories>
       <br>
       <button (click)="deleteFood(selectedFood)">Delete This Food</button>
     </div>
