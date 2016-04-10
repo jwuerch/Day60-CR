@@ -7,8 +7,19 @@ import {Food} from './food';
   template:
   `
   <div class="add-food">
-  <input class="col-sm-5" #newFood>
-  <button (click)="addFood(newFood)">Add New Food</button>
+    <form>
+      <h5>Enter in new food name</h5>
+      <input class="col-sm-5" #newFoodName>
+      <br>
+      <h5>Enter in new food calories</h5>
+      <input class="col-sm-5" #newFoodCalories>
+      <br>
+      <h5>Enter in new food details</h5>
+      <input class="col-sm-5" #newFoodDetails>
+      <br>
+      <br>
+      <button (click)="addFood(newFood)">Add New Food</button>
+    </form>
   </div>
   `
 })
