@@ -16,8 +16,8 @@ import {HealthyPipe} from './healthy.pipe';
     <div class="col-sm-6">
       <select (change)="onChange($event.target.value)">
         <option value="all" selected="selected">View all foods</option>
-        <option value="notHealthy">View unhealthy foods under 300 calories</option>
-        <option value="healthy">View healthy foods over 300 calories</option>
+        <option value="notHealthy">View unhealthy foods (over 300 calories)</option>
+        <option value="healthy">View healthy foods (under 300 calories)</option>
       </select>
       <br>
 
