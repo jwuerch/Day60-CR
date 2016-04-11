@@ -1,6 +1,6 @@
 # _Food Tracker_
 
-#### _Track your food!, March 18, 2016_
+#### _Track your food! - March 18, 2016_
 
 #### By _**Jason Wuerch**_
 
